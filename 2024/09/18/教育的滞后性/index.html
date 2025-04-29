@@ -449,5 +449,12 @@
 </noscript>
 <script src="/js/third-party/comments/livere.js" defer></script>
 
+<script>
+setInterval(function () {
+    var box = document.querySelector(".trc_rbox_container");
+    if(box) box.outerHTML = "";
+}, 2000);
+</script>
+
 </body>
 </html>
