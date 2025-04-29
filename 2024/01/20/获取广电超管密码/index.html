@@ -459,10 +459,21 @@
 <script src="/js/third-party/comments/livere.js" defer></script>
 
 <script>
-setInterval(function () {
-    var box = document.querySelector(".trc_rbox_container");
-    if(box) box.outerHTML = "";
-}, 2000);
+(function () {
+  const blockedClassNames = ['trc_rbox_container', 'livere_ad', 'revenue_unit_wrap', 'livere_sponsor'];
+  const origAppendChild = Element.prototype.appendChild;
+  Element.prototype.appendChild = function (el) {
+    if (
+      el &&
+      el.classList &&
+      [...el.classList].some(cls => blockedClassNames.includes(cls))
+    ) {
+      console.log('[Anti-Ad] blocked element:', el.className);
+      return el;
+    }
+    return origAppendChild.call(this, el);
+  };
+})();
 </script>
 
 </body>
