@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.css" integrity="sha256-zM8WXtG4eUn7dKKNMTuoWZub++VnSfaOpA/8PJfvTBo=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"vnsnclo.cn","root":"/","images":"/images","scheme":"Mist","darkmode":"auto","version":"8.23.0","exturl":true,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":false,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vnsnclo.cn","root":"/","images":"/images","scheme":"Mist","darkmode":"auto","version":"8.23.0","exturl":true,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-light","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
 
 
@@ -168,7 +168,7 @@
     <img class="site-author-image" itemprop="image" alt="与我常在"
       src="/images/avatar/avatar.gif">
   <p class="site-author-name" itemprop="name">与我常在</p>
-  <div class="site-description" itemprop="description">潜龙勿用 和光同尘</div>
+  <div class="site-description" itemprop="description">位置变了 各有队友</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
@@ -261,7 +261,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Hu's Page">
-      <meta itemprop="description" content="潜龙勿用 和光同尘">
+      <meta itemprop="description" content="位置变了 各有队友">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -338,23 +338,23 @@
 <p>GitHub 提供两种协议供 git 连接，ssh 和 https。理论上可以随意选择两者之一连接到 GitHub 上的代码仓库，无论是 <code>clone</code> 到本地，还是 <code>push</code> 到远程。但是我的网络环境 22 端口总是连接超时，而 22 端口正是 GitHub 提供 ssh 访问的端口号。可以换用 https 协议，但是每次都要输入账号密码验证，很是繁琐，所以为了方便，理想解决方式就是让 git 的 ssh 协议改用 22 以外的其他端口连接 GitHub。</p>
 <hr>
 <p>一般在 clone GitHub 上的代码仓库时，可以看到 GitHub 提供了两种不同的链接：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/xxxx/xxxx.git	# 这是https</span><br><span class="line">git clone git@github.com:xxxx/xxxx.git	# 这是ssh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/xxxx/xxxx.git	# 这是https</span><br><span class="line">git clone git@github.com:xxxx/xxxx.git	# 这是ssh</span><br></pre></td></tr></table></figure>
 
 <p>第一个https协议一般不会有问题（只要能打开 GitHub），而第二个依赖 ssh 的正常工作。因为我的网络环境 22 端口的连接总超时，还有可能会被阻断。所以测试 GitHub 的 ssh 连接时会出现以下报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">❯ ssh -T git@github.com</span><br><span class="line">Cloning into &#x27;xxxx&#x27;... </span><br><span class="line">ssh: connect to host github.com port 22: Connection timed out </span><br><span class="line">fatal: Could not read from remote repository. </span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights and the repository exists.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ ssh -T git@github.com</span><br><span class="line">Cloning into &#x27;xxxx&#x27;... </span><br><span class="line">ssh: connect to host github.com port 22: Connection timed out </span><br><span class="line">fatal: Could not read from remote repository. </span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights and the repository exists.</span><br></pre></td></tr></table></figure>
 
 <p>而正常应该输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">❯ ssh -T git@github.com</span><br><span class="line">Hi xxxx! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ ssh -T git@github.com</span><br><span class="line">Hi xxxx! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
 
 <p>看下官方文档 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGh1Yi5jb20vemgvYXV0aGVudGljYXRpb24vdHJvdWJsZXNob290aW5nLXNzaC91c2luZy1zc2gtb3Zlci10aGUtaHR0cHMtcG9ydA==">Using SSH over the HTTPS port<i class="fa fa-external-link-alt"></i></span> ，可以发现 GitHub 在另一个域名（ssh.github.com）上提供了一个 443 端口的 ssh 服务。防火墙一般不会阻拦 443 端口（只要能浏览 GitHub 就能连上），使用这个命令进行测试：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">❯ ssh -T -p 443 git@ssh.github.com</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">❯ ssh -T -p 443 git@ssh.github.com</span><br></pre></td></tr></table></figure>
 
 <p>可能会问你：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &#x27;[ssh.github.com]:443 ([xxx.xxx.xxx.xxx]:443)&#x27; can&#x27;t be established.</span><br><span class="line">xxxxxxx key fingerprint is </span><br><span class="line">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</span><br><span class="line">This key is not known by any other names.</span><br><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">The authenticity of host &#x27;[ssh.github.com]:443 ([xxx.xxx.xxx.xxx]:443)&#x27; can&#x27;t be established.</span><br><span class="line">xxxxxxx key fingerprint is </span><br><span class="line">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</span><br><span class="line">This key is not known by any other names.</span><br><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span><br></pre></td></tr></table></figure>
 
 <p>这个消息是 ssh 首次连接到一个新的主机时的提示，它询问你是否确认连接。输入 <code>yes</code> 即可。</p>
 <p>为了让 git 通过 443 端口用 ssh 访问 GitHub，我们为上述 ssh 连接方式设置一个别名。首先找到 ssh 的配置文件，路径一般是 <code>C:\Users\你的用户名\.ssh\config</code>，如果这个文件不存在的话创建一个，注意，这个文件没有后缀名。然后在其中增加以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    Port 443</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    Port 443</span><br></pre></td></tr></table></figure>
 
 <p>其中 <code>Host</code> 是别名，<code>HostName</code> 是实际的域名地址，<code>Port</code> 是端口号。当我在用 ssh 连接 github.com 时，实际访问的是 ssh.github.com，所以 <code>Host</code> 和 <code>HostName</code> 分别设置成这两个域名。</p>
 <p>如此，ssh.github.com 就成了 github.com 的顶替。当 git 通过 ssh 协议试图访问 github.com 的时候，ssh 会发现它是 ssh.github.com 的别名，因此会用 443 端口实际连接到后者。这样就绕开了网络环境对 22 端口的限制。</p>
@@ -437,7 +437,7 @@
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">Hu @ 版权所有</span>
+    <span class="author" itemprop="copyrightHolder">Hu @ Copyright</span>
   </div>
 <div class="wordcount">
   <span class="post-meta-item">
