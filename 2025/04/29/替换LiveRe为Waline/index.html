@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/logo_180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/logo_32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo/logo_16x16.png">
+  <link rel="mask-icon" href="/images/logo/logo_512x512.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Pacifico:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Josefin+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.css" integrity="sha256-zM8WXtG4eUn7dKKNMTuoWZub++VnSfaOpA/8PJfvTBo=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"vnsnclo.cn","root":"/","images":"/images","scheme":"Mist","darkmode":"auto","version":"8.23.0","exturl":true,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":240,"display":"hide","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"stackoverflow-light","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"buttons","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+
+
+<link rel="canonical" href="https://vnsnclo.cn/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://vnsnclo.cn/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/","path":"2025/04/29/替换LiveRe为Waline/","title":"替换LiveRe为Waline"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>替换LiveRe为Waline | Hu's Page</title>
+  
+
+
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;true&quot;}'></script>
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.js" integrity="sha256-hiUEBwFEpLF6DlB8sGXlKo4kPZ46Ui4qGpd0vrVkOm4=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+<script class="next-config" data-name="chatra" type="application/json">{"enable":true,"async":true,"id":"wSFAgByMW8B8cFZLW"}</script>
+<script src="/js/third-party/chat/chatra.js" defer></script>
+<script async src="https://call.chatra.io/chatra.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://vnsnclo.cn/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+<link rel="dns-prefetch" href="https://comment.vnsnclo.cn">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Hu's Page" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hu's Page</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5-LeanCloud"><span class="nav-text">第一步 LeanCloud</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-Vercel"><span class="nav-text">第二步 Vercel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5-Hexo"><span class="nav-text">第三步 Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%8A%A0-%E5%8F%AF%E9%80%89-%EF%BC%9A%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="nav-text">附加(可选)：绑定域名</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="与我常在"
+      src="/images/avatar/avatar.gif">
+  <p class="site-author-name" itemprop="name">与我常在</p>
+  <div class="site-description" itemprop="description">位置变了 各有队友</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button animated">
+    <button><i class="fa fa-comment"></i>
+      Chat
+    </button>
+  </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnZuc25jbG9AZ21haWwuY29t" title="E-Mail → mailto:vnsnclo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL3Zuc25jbG8=" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;vnsnclo"><i class="fab fa-telegram fa-fw"></i>Telegram</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5kLzQuMC8="><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nd.svg" alt="Creative Commons"></span>
+  </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <span class="exturl" data-url="aHR0cHM6Ly9wcm9ncmFtLXRoaW5rLmJsb2dzcG90LmNvbS8=" title="https:&#x2F;&#x2F;program-think.blogspot.com&#x2F;">ProgramThink</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-spotify-player">
+      <div class="spotify-embed animated">
+        
+        <iframe style="border-radius:12px" src="https://i.y.qq.com/n2/m/outchain/player/index.html?songid=251856211&songtype=0" width="100%" height="65" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vnsnclo.cn/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.gif">
+      <meta itemprop="name" content="与我常在">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hu's Page">
+      <meta itemprop="description" content="位置变了 各有队友">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="替换LiveRe为Waline | Hu's Page">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          替换LiveRe为Waline
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-29 18:55:17" itemprop="dateCreated datePublished" datetime="2025-04-29T18:55:17+08:00">2025-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%89%A9%E7%A7%8D%E8%B5%B7%E6%BA%90/" itemprop="url" rel="index"><span itemprop="name">物种起源</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><hr>
+<span id="more"></span>
+
+<p>最初用的是 LiveRe 的评论模块，一个韩国的产品，中文叫什么来必力，界面很丑，UI 感觉不像2025年的，而且 <strong>必须登录</strong> 才能评论，如图：</p>
+<p><img src="https://pic1.imgdb.cn/item/6820266258cb8da5c8ebb8a1.png"></p>
+<p>但胜在免费，也无所谓了。</p>
+<p>可今天突然看见它在评论底下打起了广告，这有点难以接受。</p>
+<p>Google 了一下解决办法。</p>
+<p>在 layout_third-party\comments\livere.njk 中插入这段 JS 。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> box = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;.trc_rbox_container&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(box) box.<span class="property">outerHTML</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>意思是每隔 2 秒钟检查一次页面中是否存在一个 class 为 <code>.trc_rbox_container</code> 的元素，如果找到了，就把它从页面中移除。</p>
+<p>看了下效果，能实现去广告，但是还是会弹出来一瞬间，然后才消失，不完美，优化一下。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> blockedClassNames = [<span class="string">&#x27;trc_rbox_container&#x27;</span>, <span class="string">&#x27;livere_ad&#x27;</span>, <span class="string">&#x27;revenue_unit_wrap&#x27;</span>, <span class="string">&#x27;livere_sponsor&#x27;</span>];</span><br><span class="line">  <span class="keyword">const</span> origAppendChild = <span class="title class_">Element</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">appendChild</span>;</span><br><span class="line">  <span class="title class_">Element</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">appendChild</span> = <span class="keyword">function</span> (<span class="params">el</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      el &amp;&amp;</span><br><span class="line">      el.<span class="property">classList</span> &amp;&amp;</span><br><span class="line">      [...el.<span class="property">classList</span>].<span class="title function_">some</span>(<span class="function"><span class="params">cls</span> =&gt;</span> blockedClassNames.<span class="title function_">includes</span>(cls))</span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="keyword">return</span> el;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> origAppendChild.<span class="title function_">call</span>(<span class="variable language_">this</span>, el);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>通过重写 <code>appendChild</code> 方法，拦截并阻止包含特定广告类名的元素动态添加到页面中，从而实现静默屏蔽广告。</p>
+<p>完美，不弹了，彻底解决了广告。</p>
+<p>本来到这里就算了，可是越看这个 UI 越丑，再想到必须登录才能评论，所以还是换了吧！</p>
+<hr>
+<p>找到了 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dhbGluZWpzL3dhbGluZQ==">Waline<i class="fa fa-external-link-alt"></i></span> 这个开源免费的评论系统，它的界面现代化，简洁好看，重要的是它 <strong>不需要登录</strong> 即可匿名评论，决定用它。</p>
+<p>这是它的文档：<span class="exturl" data-url="aHR0cHM6Ly93YWxpbmUuanMub3JnL2d1aWRlL2dldC1zdGFydGVkLw==">Waline快速上手<i class="fa fa-external-link-alt"></i></span></p>
+<p>基本上跟着这份文档就可以很完美的实现功能。</p>
+<p>分成三个独立的模块，客户端-服务端-数据库。</p>
+<h3 id="第一步-LeanCloud"><a href="#第一步-LeanCloud" class="headerlink" title="第一步 LeanCloud"></a>第一步 LeanCloud</h3><blockquote>
+<p>LeanCloud 是行业领先的一站式后端云服务提供商，专注于为开发者提供一流的工具、平台和服务。</p>
+<p>自 2013 年 9 月发布以来，LeanCloud 已经服务超过 24 万开发团队，其中既包括大量创业公司，也有大型商业项目。</p>
+<p>我们提供包括数据存储、文件存储与 CDN、消息推送和即时通讯在内的后端云服务，同时提供支撑后端代码的云引擎和云函数等开发工具，全面涵盖移动开发的需求；我们同时也提供了易于集成的全平台 SDK，支持 iOS、Android 应用和游戏开发，以及包括微信小程序在内的 web 开发。我们帮助客户摆脱繁重的后端开发负担，最大限度地降低开发成本、缩短开发周期、加快迭代速度，在激烈的市场竞争中胜出。</p>
+<p>我们的团队成员大多来自于 Google、微软、IBM、百度、阿里巴巴、网易、搜狐等知名互联网公司，具备多年的工作经验、优秀的技术实力和严谨的工作态度。我们以强大的技术实力和优质的服务为您产品的快速发展提供坚实保障。</p>
+</blockquote>
+<p>你可以把它理解为MySQL，是用来存放你评论的数据的。</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmxlYW5jbG91ZC5hcHAvbG9naW4=">登录<i class="fa fa-external-link-alt"></i></span> 或 <span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmxlYW5jbG91ZC5hcHAvcmVnaXN0ZXI=">注册<i class="fa fa-external-link-alt"></i></span> <code>LeanCloud 国际版</code> 并进入 <span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmxlYW5jbG91ZC5hcHAvYXBwcw==">控制台<i class="fa fa-external-link-alt"></i></span></p>
+<blockquote>
+<p>注意：一定要是国际版，国内版很麻烦。</p>
+</blockquote>
+<p>创建应用并选择免费的开发版，名称随便起，进入设置点击应用凭证，记住 <code>AppID</code> , <code>AppKey</code> , <code>MasteKey</code> 这三个值</p>
+<h3 id="第二步-Vercel"><a href="#第二步-Vercel" class="headerlink" title="第二步 Vercel"></a>第二步 Vercel</h3><blockquote>
+<p>Vercel Inc.（原名 ZEIT）是一家美国云平台即服务公司。该公司维护 Next.js Web 开发框架。 Vercel 的架构围绕可组合架构构建，并通过 Git 存储库、Vercel CLI 或 Vercel REST API 处理部署。 Vercel 是 MACH 联盟的成员。</p>
+</blockquote>
+<p>你可以把它理解成你的评论服务器。</p>
+<p>点击跳转至 <span class="exturl" data-url="aHR0cHM6Ly92ZXJjZWwuY29tL25ldy9jbG9uZT9yZXBvc2l0b3J5LXVybD1odHRwczovL2dpdGh1Yi5jb20vd2FsaW5lanMvd2FsaW5lL3RyZWUvbWFpbi9leGFtcGxl">Vercel<i class="fa fa-external-link-alt"></i></span> 进行 Server 部署</p>
+<p>登录 Github 账户，输入一个名称点击 <code>Create</code> 进行创建。</p>
+<p>它会在你的 Github 中创建一个仓库，名称为你刚才输入的。</p>
+<p>稍等一分钟后点击 <code>Go to Dashboard</code> 进入控制台。</p>
+<p>点击顶部的 <code>Settings</code> - <code>Environment Variables</code> 进入环境变量配置页，并配置三个环境变量 <code>LEAN_ID</code> , <code>LEAN_KEY</code> 和 <code>LEAN_MASTER_KEY</code> 。它们的值分别对应上一步在 LeanCloud 中获得的 <code>APP ID</code> , <code>APP KEY</code> , <code>MasterKey</code> ，对应下表。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Lean Cloud</strong></th>
+<th align="center"><strong>Vercel Environment</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AppID</td>
+<td align="center">LEAN_ID</td>
+</tr>
+<tr>
+<td align="center">AppKey</td>
+<td align="center">LEAN_KEY</td>
+</tr>
+<tr>
+<td align="center">MasterKey</td>
+<td align="center">LEAN_MASTER_KEY</td>
+</tr>
+</tbody></table>
+<p>完成后重新部署，它会弹出提醒框，点击 <code>Redeploy</code> 即可</p>
+<p>稍等部署完毕后你会看到一个 <code>Visit</code> 按钮，点击后的地址即为你评论服务器的地址。</p>
+<h3 id="第三步-Hexo"><a href="#第三步-Hexo" class="headerlink" title="第三步 Hexo"></a>第三步 Hexo</h3><p>由于 Next 主题中不自带 <code>Waline</code> 的评论配置，所以需要安装官方提供的插件。在 <code>Hexo</code> 根目录执行：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install @waline/hexo-next</span><br></pre></td></tr></table></figure>
+
+<p>在配置文件中加入：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="attr">active:</span> <span class="string">waline</span></span><br><span class="line"></span><br><span class="line"><span class="attr">waline:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">serverURL:</span> <span class="string">https://your-waline-instance.vercel.app</span>  <span class="comment"># 替换为你的 Waline 服务地址</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">requiredMeta:</span> [<span class="string">&#x27;nick&#x27;</span>, <span class="string">&#x27;mail&#x27;</span>]</span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">&#x27;nick&#x27;</span>, <span class="string">&#x27;mail&#x27;</span>, <span class="string">&#x27;link&#x27;</span>]</span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">wordLimit:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>配置项说明：</p>
+<ul>
+<li><p><code>enable</code>: 启用 Waline 评论系统。</p>
+</li>
+<li><p><code>serverURL</code>: Waline 服务端地址，部署后由 Vercel 提供。</p>
+</li>
+<li><p><code>lang</code>: 界面语言，<code>zh-CN</code> 表示简体中文。</p>
+</li>
+<li><p><code>visitor</code>: 启用访问量统计。</p>
+</li>
+<li><p><code>comment_count</code>: 显示评论数。</p>
+</li>
+<li><p><code>requiredMeta</code>: 评论者必须填写的字段，如昵称和邮箱。</p>
+</li>
+<li><p><code>meta</code>: 评论者可填写的字段，包含昵称、邮箱和网站链接。</p>
+</li>
+<li><p><code>pageSize</code>: 每页显示的评论数量。</p>
+</li>
+<li><p><code>wordLimit</code>: 评论字数限制，<code>0</code> 表示无限制。</p>
+</li>
+</ul>
+<p>重新部署即可看到效果。</p>
+<h3 id="附加-可选-：绑定域名"><a href="#附加-可选-：绑定域名" class="headerlink" title="附加(可选)：绑定域名"></a>附加(可选)：绑定域名</h3><p>得到的评论服务器地址很长很乱，管理评论的时候显然不利于记忆。</p>
+<p>所以，回到第二步完成后。</p>
+<ol>
+<li><p>点击顶部的 <code>Settings</code> - <code>Domains</code> 进入域名配置页</p>
+</li>
+<li><p>输入需要绑定的域名并点击 <code>Add</code></p>
+<blockquote>
+<p>你可以像我一样输入 comment 为前缀的 comment.yourdomain.com</p>
+</blockquote>
+</li>
+<li><p>然后在域名服务器商处添加新的 <code>CNAME</code> 解析记录，它会提醒你自动添加。</p>
+<table>
+<thead>
+<tr>
+<th align="center">Type</th>
+<th align="center">Name</th>
+<th align="center">Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CNAME</td>
+<td align="center">comment</td>
+<td align="center">cname.vercel-dns.com</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>等待生效后，你就可以通过自己域名来访问了。</p>
+<ul>
+<li>评论系统：comment.yourdomain.com</li>
+<li>评论管理：comment.yourdomain.com&#x2F;ui</li>
+</ul>
+<p>第一个注册的为管理员，所以完成后尽快注册。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div> </div>
+  <button>
+    V 我 五 十
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/pay/wechatpay.png" alt="与我常在  ">
+        <span> </span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>与我常在
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://vnsnclo.cn/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/" title="替换LiveRe为Waline">https://vnsnclo.cn/2025/04/29/替换LiveRe为Waline/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5kLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-ND</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/comment/" rel="tag"><i class="fa fa-tag"></i> comment</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/05/03/%E4%B8%80%E9%A4%90%E5%A5%BD%E9%A5%AD/" rel="prev" title="一餐好饭">
+                  <i class="fa fa-angle-left"></i> 一餐好饭
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/04/25/The-origin-of-this-website/" rel="next" title="The origin of this website">
+                  The origin of this website <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Hu @ Copyright</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">16k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">59 分钟</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://comment.vnsnclo.cn","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"visitor":false,"comment_count":false,"requiredMeta":[],"meta":["nick","mail","link"],"pageSize":10,"wordLimit":0,"dark":"auto","el":"#waline","comment":true,"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","path":"/2025/04/29/%E6%9B%BF%E6%8D%A2LiveRe%E4%B8%BAWaline/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
