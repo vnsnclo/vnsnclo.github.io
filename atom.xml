@@ -6,7 +6,7 @@
   <link href="https://vnsnclo.cn/atom.xml" rel="self"/>
   
   <link href="https://vnsnclo.cn/"/>
-  <updated>2025-06-11T10:20:55.370Z</updated>
+  <updated>2025-06-07T15:46:53.822Z</updated>
   <id>https://vnsnclo.cn/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>AList商业化</title>
-    <link href="https://vnsnclo.cn/2025/06/11/AList%E5%95%86%E4%B8%9A%E5%8C%96/"/>
-    <id>https://vnsnclo.cn/2025/06/11/AList%E5%95%86%E4%B8%9A%E5%8C%96/</id>
-    <published>2025-06-11T08:06:36.000Z</published>
-    <updated>2025-06-11T10:20:55.370Z</updated>
-    
-    <content type="html"><![CDATA[<hr><span id="more"></span><p>今天中午看到AList News频道信息，很显然，被卖已经非常确定了。</p><p><strong>AList</strong> 是一个开源项目，它可以将 40 多款主流网盘聚合到一个网页上，进行文件管理、视频播放等操作。来自网上多个方面的消息，大概今年4月份左右被卖，不过原开发者持续更新代码，但对于这件事保持了沉默，直至今天。</p><p><img src="https://pic1.imgdb.cn/item/684939ee58cb8da5c8448f61.jpg"></p><p>从知道并使用AList到今天两年多。去年这时候，阿里还没有推出三方权益包这种恶心的东西，那时候一部70G的蓝光原盘直接在浏览器中拉满宽带流畅观看，从用AList到阿里推出三方权益包，这期间我看过的电影比前十几年加起来都多，哈哈。可惜任何商业产品最终都会走向圈钱这条路，去年六月底，阿里三方应用权益包上线，挂载WebDAV服务的第三方应用，比如AList、Infuse，即使会员也要单独开通第三方权益包才能使用，当初号称永不限速的阿里，现在看来就是图一乐而已，最后还是难逃百度网盘的趋势。</p><p><img src="https://pic1.imgdb.cn/item/68493b7758cb8da5c84491b3.png"></p><p><img src="https://pic1.imgdb.cn/item/684941b958cb8da5c8449b16.png"></p><p>阿里这种本身就是商业体的云盘服务最终为了钱无可厚非，可不同的是AList是开源，不属于原作一个人，177位贡献者都为了免费的开源精神维护，结果原作转头给偷偷卖了，还是被扒出来以后才发的声明，这人品确实有点复杂。不过，虽然AList被以非常丑陋的姿态卖掉，感觉非常可惜，但从开源的角度又挺理解的，毕竟维持开源是很辛苦的，现在破口大骂的AList用户应该都没体会过开源的苦，看不到作者的长期孤独贡献，只看到又少了一个可以白嫖的项目而已。</p><p><img src="https://pic1.imgdb.cn/item/68494b1558cb8da5c844cd47.png"></p><p><img src="https://pic1.imgdb.cn/item/68494f0258cb8da5c844d10d.png"></p><p><img src="https://pic1.imgdb.cn/item/6849497658cb8da5c844cb7a.png"></p><p>刚卖就开始在源码里加料，统计操作系统信息。商业化没问题，正常收费也可以，可悲的不是卖掉，而是卖给一个有前科的名声差的公司。</p><p><img src="https://pic1.imgdb.cn/item/68494b6e58cb8da5c844cda4.png"></p><p>最后，很中肯的评价。</p><p><img src="https://pic1.imgdb.cn/item/68494fe858cb8da5c844d18f.png"></p><p>著名画作《AList黑奴榜》</p><p><img src="https://pic1.imgdb.cn/item/6849562d58cb8da5c844f58e.jpg"></p>]]></content>
-    
-    
-    <summary type="html">&lt;hr&gt;</summary>
-    
-    
-    
-    <category term="杂乱无章" scheme="https://vnsnclo.cn/categories/%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0/"/>
-    
-    
-    <category term="Open Source" scheme="https://vnsnclo.cn/tags/Open-Source/"/>
-    
-  </entry>
   
   <entry>
     <title>文件编码转换</title>
@@ -435,6 +414,27 @@
     
     
     <category term="bing" scheme="https://vnsnclo.cn/tags/bing/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>丰王食馍记</title>
+    <link href="https://vnsnclo.cn/2022/12/01/%E4%B8%B0%E7%8E%8B%E9%A3%9F%E9%A6%8D%E8%AE%B0/"/>
+    <id>https://vnsnclo.cn/2022/12/01/%E4%B8%B0%E7%8E%8B%E9%A3%9F%E9%A6%8D%E8%AE%B0/</id>
+    <published>2022-12-01T10:46:04.000Z</published>
+    <updated>2025-05-03T16:54:35.661Z</updated>
+    
+    <content type="html"><![CDATA[<hr><span id="more"></span><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>丰润二十一年，正值大暑，出户稍动，汗流浃背。暑天中有足乐者，顶温御火于七月，负肠曳驹于大路，物精集于身，意念汇于体，持食泡馍，自皆有。</p><h2 id="文"><a href="#文" class="headerlink" title="文"></a>文</h2><p>常晚，瞻夜毕，解衣欲睡，丰王飞信传书，约共进泡馍，彼时正深夜，大疑不解，便以回绝。不时，又信：情淡？不劳汝财，瘾犯，念无与为食者矣。听毕欣然起行，入长街。挥手挡驹，告速达，低估酷暑之温，热以难耐。至望月楼，远见丰王蠕动如蛆，甚不解。急卸驹，前询因，不出所料，欲出恭！不免欢。丰王大怒，燥曰：吾口干似旱厕，腹便如长虫，笑你麻痹乎？吾实乐极，时滞不歇，丰王瞪睁，以手拥腹，甚是狰狞。吾欢毕问曰，何不指为托，掌为盘，大快之后食之？自不费财进泡馍。丰王顿急，色变叱咄，吾立色愈恭，眺望寻厕。</p><p>厕后入楼，吾不及步门，丰王音如滚雷：优牛，加馍五，汤宽，速上！吾大惊，馍五，牲口乎？自是心音，不敢出声相劝。不时上毕，观后面沉滴血，吾微声斗胆相问，何也？不予理睬，起身大怒，惊向主曰：爷日无再食，唯为此口，慕名前来，如狗屎泄料，无鲜肥滋味之享，肉微糜烂，汤浊馍破，何以食之？同舍店皆披大修，装饰如宫以待客，汝楼如厕且不提，立本之馍却也如同猪狗饲料，此为待客之道？！吾曰馍五，观之不及四，偷工减料，此种黑法，何以饱腹？！月楼主脸红如漆，不敢出一言以覆，丰王见之作罢，摔门骑驹，扬长而去。吾复心惊，自思：一碗二十的烂泡馍，你倒就是个要求高。</p><p><strong>附：丰润和园小区的“王”，简称丰王。</strong></p>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="心灵奇旅" scheme="https://vnsnclo.cn/categories/%E5%BF%83%E7%81%B5%E5%A5%87%E6%97%85/"/>
+    
+    
+    <category term="随笔" scheme="https://vnsnclo.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
