@@ -687,6 +687,33 @@ figure.highlight::before {
   height: 12px;
   width: 12px;
 }
+.expand-btn {
+  bottom: 0;
+  color: var(--highlight-foreground);
+  cursor: pointer;
+  display: none;
+  left: 0;
+  right: 0;
+  position: absolute;
+  text-align: center;
+}
+.fold-cover {
+  background-image: linear-gradient(to top, var(--highlight-background) 0, rgba(0,0,0,0) 100%);
+  bottom: 0;
+  display: none;
+  height: 50px;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+.highlight-fold {
+  max-height: 300px;
+  overflow-y: hidden !important;
+}
+.highlight-fold .expand-btn,
+.highlight-fold .fold-cover {
+  display: block;
+}
 code,
 kbd,
 figure.highlight,
@@ -1463,7 +1490,7 @@ pre code {
   transition: all 0.2s ease-in-out;
 }
 .links-of-author a::before {
-  background: #1a2ed1;
+  background: #ff3d4e;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -3107,4 +3134,21 @@ header.header {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+.not-by-ai-badge-link {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+  text-decoration: none;
+  border: none;
+  box-shadow: none;
+}
+.not-by-ai-badge-img {
+  max-width: 150px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+.not-by-ai-badge-img:hover {
+  transform: scale(1.05);
 }
