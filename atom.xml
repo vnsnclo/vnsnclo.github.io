@@ -6,7 +6,7 @@
   <link href="https://vnsnclo.cn/atom.xml" rel="self"/>
   
   <link href="https://vnsnclo.cn/"/>
-  <updated>2025-06-07T15:46:53.822Z</updated>
+  <updated>2025-11-13T11:20:48.968Z</updated>
   <id>https://vnsnclo.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>你不需要GitHub：轻量级Git私服</title>
+    <link href="https://vnsnclo.cn/2025/11/13/%E4%BD%A0%E4%B8%8D%E9%9C%80%E8%A6%81GitHub%EF%BC%9A%E8%BD%BB%E9%87%8F%E7%BA%A7Git%E7%A7%81%E6%9C%8D/"/>
+    <id>https://vnsnclo.cn/2025/11/13/%E4%BD%A0%E4%B8%8D%E9%9C%80%E8%A6%81GitHub%EF%BC%9A%E8%BD%BB%E9%87%8F%E7%BA%A7Git%E7%A7%81%E6%9C%8D/</id>
+    <published>2025-11-13T08:02:14.000Z</published>
+    <updated>2025-11-13T11:20:48.968Z</updated>
+    
+    <content type="html"><![CDATA[<hr><span id="more"></span><p><strong>如果你已经有了一台 SSH 服务器，你就不需要 GitHub、GitLab 等第三方服务来托管你的 Git 仓库。</strong></p><p>你的 SSH 服务器本身就已经是一个功能齐全的 Git 服务器。</p><h2 id="1-核心技术点：理解“裸仓库”-Bare-Repository"><a href="#1-核心技术点：理解“裸仓库”-Bare-Repository" class="headerlink" title="1. 核心技术点：理解“裸仓库” (Bare Repository)"></a>1. 核心技术点：理解“裸仓库” (Bare Repository)</h2><p>这是实现一切的基础。要理解它，得先搞清楚一个普通的 Git 仓库包含什么。</p><p>当你运行 <code>git init</code> 时，你得到的是一个 <strong>“工作仓库” (Working Repository)</strong> 。它包含两部分：</p><ol><li><strong>工作区 (Working Directory)：</strong> 你实际看到和编辑的代码文件，比如 <code>main.js</code>, <code>README.md</code> 等。</li><li><strong>.git 目录：</strong> 一个隐藏目录，包含了 Git 的所有“内脏”——提交历史、分支、标签、对象数据等。</li></ol><p>而 <strong>裸仓库(Bare Repository)</strong> 则完全不同。当你运行 <code>git init --bare</code> 时，你得到的仓库<strong>没有工作区</strong>。它<strong>只包含</strong> <code>.git</code> 目录里的内容。你只能看到 <code>HEAD</code>, <code>config</code>, <code>objects</code>, <code>refs</code> 这些 Git 的内部文件。</p><p><strong>为什么服务器需要裸仓库？</strong></p><p>这是关键。服务器扮演的是一个“中心枢纽”的角色，只负责接收和分发提交历史，从不干涉其它。</p><p>想象一下，如果你试图 <code>push</code> 代码到一个“工作仓库”（即有工作区的普通仓库），而这个仓库刚好 <code>checkout</code> 在 <code>main</code> 分支。你的 <code>push</code> 会尝试更新 <code>main</code> 分支，这会导致服务器上的工作区文件和 Git 历史记录产生冲突和混乱。Git 会阻止这种操作。</p><p>而裸仓库没有工作区，因此它没有任何被 <code>checkout</code> 的分支。它就像一个纯粹的“数据库”，可以安全地接收来自任何人的 <code>git push</code>，是作为服务器仓库的完美形态。</p><h2 id="2-创建自己的-Git-服务器"><a href="#2-创建自己的-Git-服务器" class="headerlink" title="2. 创建自己的 Git 服务器"></a>2. 创建自己的 Git 服务器</h2><p>你只需要：一台你能 SSH 登录的服务器。</p><h3 id="第一步：在服务器上初始化裸仓库"><a href="#第一步：在服务器上初始化裸仓库" class="headerlink" title="第一步：在服务器上初始化裸仓库"></a>第一步：在服务器上初始化裸仓库</h3><p>你可以使用任意 SSH 工具链接你的服务器，我这里使用的是 Termius（界面漂亮但收费），你可以使用 FinalShell、XShell、HexHub等等一系列免费的GUI工具，当然你也可以直接使用电脑自带的终端。</p><p>终端命令：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh your_user@your_server</span><br></pre></td></tr></table></figure><p>输入你的密码（不会显示但已经输入），进入你的服务器你会看到：</p><p><img src="https://pic1.imgdb.cn/item/6915a3e93203f7be00ff3cf8.png"></p><p>然后，我们来创建一个存放仓库的目录。使用 <code>.git</code> 作为目录后缀，以明确表示这是一个裸仓库。</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> you_project_name.git</span><br></pre></td></tr></table></figure><p>进入这个目录，并初始化它为裸仓库：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> you_project_name.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure><p>你会看到：<code>Initialized empty Git repository in /home/your_user/you_project_name.git/</code></p><p><img src="https://pic1.imgdb.cn/item/6915a6363203f7be00ff44dc.png"></p><p>至此服务器部分已经<strong>全部完成</strong>。</p><h3 id="第二步：从本地仓库克隆"><a href="#第二步：从本地仓库克隆" class="headerlink" title="第二步：从本地仓库克隆"></a>第二步：从本地仓库克隆</h3><p>现在，回到你本地电脑上，打开终端，使用 <code>git clone</code> 命令（前提是已安装Git）。</p><p>上图可以看到，我开了两个本地终端，分别是 Local Terminal ONE 和 Local Terminal TWO，两个终端在不同目录下，来模仿两个不同的电脑。</p><p>首先来到 Local Terminal ONE。</p><p>关键在于 URL 的写法。Git 原生支持 SSH 协议。语法是： <code>user@host:/path/to/repo.git</code></p><ul><li><p><code>user@host</code>：就是你 SSH 登录服务器的用户名和地址。</p></li><li><p><code>:</code> 后面是服务器上裸仓库的<strong>绝对路径</strong>或<strong>相对路径</strong>。</p></li></ul><p>例如，如果 <code>you_project_name.git</code> 在你的服务器主目录 (<code>~</code>) 下，你可以使用相对路径：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> your_user@your-server:you_project_name.git</span><br></pre></td></tr></table></figure><p>如果它在 <code>/opt/git/</code> 目录下，你就需要使用绝对路径：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> your_user@your-server:/opt/git/you_project_name.git</span><br></pre></td></tr></table></figure><p>如果你和我的操作相同的话，那么此刻<code>you_project_name.git</code> 在你的服务器主目录（<code>~</code>）下，我们在本地终端选择使用相对路径。</p><p>执行命令后，Git 会通过 SSH 连接服务器，下载仓库数据。你会得到一个 <code>Cloning into &#39;you_project_name&#39;...</code> 的提示，以及一个 <code>warning: You appear to have cloned an empty repository.</code> 的警告。这很正常，因为我们的仓库刚初始化，什么都还没有。</p><p><img src="https://pic1.imgdb.cn/item/6915aa473203f7be00ff661c.png"></p><h3 id="第三步：推送你的第一个提交"><a href="#第三步：推送你的第一个提交" class="headerlink" title="第三步：推送你的第一个提交"></a>第三步：推送你的第一个提交</h3><p>进入本地克隆下来的仓库</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> you_project_name</span><br></pre></td></tr></table></figure><p>创建一个文件并提交</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件内容随意</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span> &gt; README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit&quot;</span></span><br></pre></td></tr></table></figure><p>推送到服务器</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin main</span><br></pre></td></tr></table></figure><p>执行 <code>git push</code> 时，Git 会再次通过 SSH 连接到服务器，进行身份验证（可能会提示你输入 SSH 密钥密码），然后将你的提交数据安全地推送到服务器的裸仓库中。</p><p><img src="https://pic1.imgdb.cn/item/6915acaf3203f7be00ff6cf5.png"></p><p>至此，你已经拥有了一个 100% 属于你的私有 Git 服务器。</p><h3 id="第四步：验证是否推送成功"><a href="#第四步：验证是否推送成功" class="headerlink" title="第四步：验证是否推送成功"></a>第四步：验证是否推送成功</h3><p>你会想，我 push 到服务器了，但是文件在服务器哪里可以看到呢？怎么验证是否真的成功了呢？</p><p>答案是，你无法在服务器上像查看普通文件夹一样直接看到你推送的（比如 <code>README.md</code>）文件。</p><p>为什么会这样？</p><p>因为你创建的是一个<strong>裸仓库 (<code>git init --bare</code>)</strong>。</p><ul><li><p><strong>没有工作区：</strong> 裸仓库没有“工作区”。它不会把你的文件解压并平铺在文件夹里。</p></li><li><p><strong>只有 Git 数据库：</strong> 它只包含 Git 的内部数据库（即 <code>.git</code> 文件夹里的内容）。</p></li></ul><p>你推送的文件内容被 Git 压缩后，存储为“对象 (objects)”，放在了你仓库目录的 <code>objects</code> 文件夹里（例如 <code>/you_project_name.git/objects/</code>）。这些文件是以 Git 的内部格式存储的，文件名是哈希值（比如 <code>fa/49b0779c13d8...</code>），无法直接阅读。</p><p>那么，该如何查看文件？</p><p>两种方式：</p><p><strong>方式一：在另一台电脑上</strong></p><p>这个服务器现在是你的“中央枢纽”。查看文件的正确方式是<strong>从另一台电脑上把它 <code>clone</code> 下来</strong>：</p><p>此时我来到我的 Local Terminal TWO，执行 <code>git clone</code>。</p><p><img src="https://pic1.imgdb.cn/item/6915b1763203f7be00ff76c3.png"></p><p>结果很显然，<code>README.md</code> 文件确实成功的 push 到了服务器上。</p><p><strong>方式二：在服务器上查看</strong></p><p>来到服务器的 <code>you_project_name.git</code> 仓库下。</p><p><strong>查看提交历史：</strong> 用 <code>git log</code> 查看刚才的 push 记录：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure><p>你会看到 <code>fatal: your current branch &#39;master&#39; does not have any commits yet</code> 错误，这是因为服务器上这个裸仓库的 <code>HEAD</code> 文件（它相当于一个“默认分支”的指针）指向了错误的地方。</p><p>因为 <code>HEAD</code> 默认指向 <code>master</code>，但 <code>master</code> 分支上什么都没有。</p><p>我们上面推送的是 <code>main</code> 分支。</p><p>我们应该告诉这个裸仓库，<code>main</code> 才是它的默认分支。</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git symbolic-ref HEAD refs/heads/main</span><br></pre></td></tr></table></figure><p><strong>这个命令做了什么？</strong> 它会编辑你的 <code>HEAD</code> 文件，让它从指向 <code>refs/heads/master</code> (一个不存在的分支) 改为指向 <code>refs/heads/main</code> (刚刚推送的分支)。</p><p>此时我们再试 <code>git log</code> ，就能正常工作了。</p><p><strong>查看最新提交的文件列表：</strong> 使用 <code>ls-tree</code> 命令可以列出某个提交（这里用 <code>HEAD</code> 代表最新）包含的文件：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git ls-tree HEAD</span><br></pre></td></tr></table></figure><p><strong>查看特定文件的内容：</strong> 查看某个文件的内容（比如 <code>README.md</code>），可以使用 <code>git show</code>：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git show HEAD:README.md</span><br></pre></td></tr></table></figure><p><img src="https://pic1.imgdb.cn/item/6915b65b3203f7be00ff9e35.png"></p><h2 id="3-Git、SSH-与-GitHub-的联系"><a href="#3-Git、SSH-与-GitHub-的联系" class="headerlink" title="3.Git、SSH 与 GitHub 的联系"></a>3.Git、SSH 与 GitHub 的联系</h2><p><code>git push</code> 到底是怎么通过 SSH 工作的？</p><p>当执行 <code>git push</code> 或 <code>git pull</code> 时，Git 客户端在底层实际上是作为 SSH 客户端运行的。它大致做了以下几件事：</p><ol><li><strong>建立连接：</strong> 通过 SSH 连接到 <code>your_user@your-server</code>。</li><li><strong>执行命令：</strong> 在远程服务器上执行 <code>git-receive-pack</code>（用于 push）或 <code>git-upload-pack</code>（用于 pull&#x2F;fetch）命令。</li><li><strong>数据传输：</strong> 本地和远程的这两个 <code>git</code> 进程通过 SSH 建立的这个安全通道（stdin&#x2F;stdout）来协商和传输 Git 对象数据（即提交、文件等）。</li></ol><p>所以，<strong>Git 本身就是被设计为去中心化的，并且原生支持 SSH 协议</strong>。我们所做的，只是利用了它最基本、最核心的功能。</p><p>而这也正是 GitHub 的工作原理。</p><p>你仔细看过 GitHub 仓库的 SSH URL会发现 <code>git@github.com:your-name/your-repo.git</code>：</p><ul><li><code>git</code>：是 GitHub 用来处理 Git 操作的<strong>通用 SSH 用户名</strong>。</li><li><code>github.com</code>：是 GitHub 的 SSH 服务器地址。</li><li><code>your-name/your-repo.git</code>：是存储在 GitHub 服务器上，属于你的那个<strong>裸仓库的路径</strong>。</li></ul><p>可以在本地终端试试这个命令： <code>ssh git@github.com</code></p><p>你会收到 GitHub 服务器的回复：<code>Hi your_github_username! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></p><p>这行字说明：</p><ol><li>你成功地通过 SSH 密钥认证了。</li><li><code>github.com</code> 就是一台 SSH 服务器。</li><li>它只是禁用了你的 shell 登录权限，只允许你执行 <code>git-receive-pack</code> 和 <code>git-upload-pack</code> 等 Git 相关的命令。</li></ol><p>GitHub、GitLab 在它们的核心，就是一套非常庞大和复杂的系统，用于管理海量的裸仓库和 SSH 公钥，并在上层套了一个 Web 界面来处理 Pull Request 和 Issues。</p><h2 id="4-优势与局限性"><a href="#4-优势与局限性" class="headerlink" title="4.优势与局限性"></a>4.优势与局限性</h2><p>不用 GitHub 而改用 SSH 服务器意味着什么？</p><p>它的巨大优势在于：</p><ul><li><strong>避免了第三方服务的痛点：</strong> 如私有库收费、网络限制、对数据失去完全控制等。</li><li><strong>绝对安全：</strong> 你的身份验证和授权完全由 SSH 负责。你可以通过管理服务器的 <code>~/.ssh/authorized_keys</code> 文件来添加或删除协作者。没有 SSH 密钥的人，绝对无法访问你的仓库。</li><li><strong>完全控制：</strong> 数据 100% 在你自己的服务器上，你可以随时备份、迁移、删除。</li><li><strong>零配置，零依赖：</strong> 只要有 SSH 和 Git，一切就绪。</li><li><strong>轻量高效：</strong> 资源占用极低，几乎为零。</li><li><strong>完美的多人协作：</strong> 任何拥有该服务器 SSH 访问权限的团队成员，都可以通过相同的 <code>git clone</code> 和 <code>git push</code> 命令来进行协作。</li></ul><p>但同时，你会失去：</p><ul><li><strong>Web 界面：</strong> 没有地方可以在浏览器里看代码。</li><li><strong>Pull Requests：</strong> 没有 PR 功能。协作模式回到了最原始的“发邮件讨论 Patch”。</li><li><strong>Issues 和 CI&#x2F;CD：</strong> 这些高级功能统统没有。</li></ul><p><strong>总结</strong></p><p>对于许多私有项目、代码备份、或小型团队的内部协作来说，这个方案远比维护一个庞大的 GitLab 实例，或为私有库向 GitHub 付费要简单、高效得多。</p><blockquote><p>参考：<span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3YyL0dpdC1vbi10aGUtU2VydmVyLVRoZS1Qcm90b2NvbHMuaHRtbA==">Git on the Server - The Protocols<i class="fa fa-external-link-alt"></i></span></p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="杂乱无章" scheme="https://vnsnclo.cn/categories/%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0/"/>
+    
+    
+    <category term="git" scheme="https://vnsnclo.cn/tags/git/"/>
+    
+    <category term="ssh" scheme="https://vnsnclo.cn/tags/ssh/"/>
+    
+    <category term="伺服器" scheme="https://vnsnclo.cn/tags/%E4%BC%BA%E6%9C%8D%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>文件编码转换</title>
@@ -34,50 +59,6 @@
     
     
     <category term="Encoding" scheme="https://vnsnclo.cn/tags/Encoding/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>世中逢尔，雨中逢花</title>
-    <link href="https://vnsnclo.cn/2025/05/20/%E4%B8%96%E4%B8%AD%E9%80%A2%E5%B0%94%EF%BC%8C%E9%9B%A8%E4%B8%AD%E9%80%A2%E8%8A%B1/"/>
-    <id>https://vnsnclo.cn/2025/05/20/%E4%B8%96%E4%B8%AD%E9%80%A2%E5%B0%94%EF%BC%8C%E9%9B%A8%E4%B8%AD%E9%80%A2%E8%8A%B1/</id>
-    <published>2025-05-19T16:00:00.000Z</published>
-    <updated>2025-05-19T16:08:28.657Z</updated>
-    
-    <content type="html"><![CDATA[<hr><span id="more"></span><p>今天是2025年5月20日，一年两日的网络情人节。</p><p>相逢如骤雨初晴。关于爱情的文字我很少下笔，因为本人的情感经历基本为零。文字应该建立在有相应经历的基础下，下笔才会得心应手，信手拈来，继而共鸣。</p><p>但是今天，关于世间男女，关于我们与生俱来的感情，我来架空经历，写点空洞的，写点亢奋的。写给屏幕面前的你，也写给世间每一段相逢。</p><p>小时候喜欢玩一个网游，洛克王国，里面有个宠物，名阿布。它在这个游戏里很出名，同时也很难获得。那个时候很想拥有它，就仿佛那是世间最好的宠物，可是直到后来退游，我也没有完成任务获得过。后来过了很多年，我再登游戏，它变得极易获取，于是我看着仓库里多出来的几只阿布，突然觉得也就那样。</p><p>初三的时候，手游王者荣耀爆火，那个时候打到王者段位，你就是班级里下课讨论的焦点。小孩总是喜欢光环凝聚在自己身上，我当然也不例外。可是实名制策略限制未满十八岁一天只有两小时的游戏时间，同时我也因为排位怕输而一直打匹配，所以直到十八之前，我都没有上过王者。后来，年龄推着我迈过了那个名为十八的沟壑，两小时的枷锁继而碎裂，我却又觉得没意思了，从此再也没有玩过。</p><p>写到这里，你可能会疑惑，这和爱情有什么关系呢，这不是得不到的永远在骚动吗。</p><p>我想说的是，如果那个时候我能坚持完成那个任务，我可能就会在阿布最火的年代获得它，我的童年会因为这个宠物而多出一段愉快的记忆；如果那个时候我能不怕输掉排位，我可能就会在最虚荣的年龄达到王者，继而享受段位带来的喜悦和光环。</p><p>所以这漫漫人生路上，我们总是在寻找着什么，又在失去着什么。从前没有做完的事，未来即使做到了，有时候也没有意义了。</p><p>常羡人间琢玉郎，天应乞与点酥娘。总是等啊等，怕啊怕，想着再变好一点再去找他(她)，最后笑容定格在毕业照里，留下缥缈的东西，毕业相册上一个灰扑扑的笑脸，一个平淡无奇的名字，许多人就这么错过。世间的阴差阳错从未停歇，都是寻常。</p><p>虽然我没有这种经历，但是我相信，这就是很多人的青春。</p><blockquote class="blockquote-center"><p>命运暂且的交错<br>在最后 都化为乌有<br>但那天曾实在 华丽的邂逅</p></blockquote><p>在很多个瞬间，我突然意识到，在我生命中，我其实已经和很多人在不经意间见完最后一面了。当我开始寻找他们曾存在过我生命中的痕迹时，我才发现关于他们的任何一点蛛丝马迹我都再也找不到了。我开始怀念，开始遗憾，在这偌大的世界里，或许我们再也不会再见了。</p><p>没有人会一直在原地，每个人都被时光这条大河裹挟着向前。有些时间节点你错过了一次，就好比错过了他(她)的一生，从此你们分道扬镳，再无交集。我们越长大，顾忌越多，那种怦然心动的感觉也会越来越少。以前我也是太过谨慎的一个人，什么事都先考虑最坏的后果，可同时，生活也就没意思了。生活需要冲动，明天会发生什么，后天不就知道了？</p><p>花开堪折直须折，莫待无花空折枝。人生不像做饭，不能等万事俱备了才下锅。年少时错过的那些东西，旨在教会我们在后来的日子里懂得珍惜。</p><p>逆转时间的公式就是珍惜现在，现在就去做，现在就去说。你会发现，因为喜欢一个人而作出某些决定，真的很奇妙。</p>]]></content>
-    
-    
-    <summary type="html">&lt;hr&gt;</summary>
-    
-    
-    
-    <category term="心灵奇旅" scheme="https://vnsnclo.cn/categories/%E5%BF%83%E7%81%B5%E5%A5%87%E6%97%85/"/>
-    
-    
-    <category term="相逢" scheme="https://vnsnclo.cn/tags/%E7%9B%B8%E9%80%A2/"/>
-    
-    <category term="勇气" scheme="https://vnsnclo.cn/tags/%E5%8B%87%E6%B0%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>朝生暮死，亦可惊鸿</title>
-    <link href="https://vnsnclo.cn/2025/05/07/%E6%9C%9D%E7%94%9F%E6%9A%AE%E6%AD%BB%EF%BC%8C%E4%BA%A6%E5%8F%AF%E6%83%8A%E9%B8%BF/"/>
-    <id>https://vnsnclo.cn/2025/05/07/%E6%9C%9D%E7%94%9F%E6%9A%AE%E6%AD%BB%EF%BC%8C%E4%BA%A6%E5%8F%AF%E6%83%8A%E9%B8%BF/</id>
-    <published>2025-05-07T12:47:49.000Z</published>
-    <updated>2025-05-19T14:30:01.096Z</updated>
-    
-    <content type="html"><![CDATA[<hr><span id="more"></span><p>蜉蝣。</p><p>世界上寿命最短的生物之一，一生被压缩至二十四小时左右，有的可能会更短，一天内完成求偶，交配，产卵，死亡。</p><p>人类一天，蜉蝣一生。</p><p>网友说，我观蜉蝣，如宇宙观我。苏轼说，寄蜉蝣于天地，渺沧海之一粟。我想说，朝生暮死，亦可惊鸿。</p><p>它是时间的囚徒，亦是人类的缩影。</p><p>蛰伏在溪流中数年破土而出，清空肠道，闭合消化，从此不再进食。</p><p>卸下肠胃，是它对天空的投名状，它的一天，也是一生，就这样开始。</p><p>在转瞬即逝的生命里，唯一的使命就是繁衍，几亿同类的葬礼是它最盛大的婚礼。</p><p>羽化求偶，雄虫婚飞，漫天舞姿，雌虫飞入群中与之交配，在此过程中，面临极大死亡风险，被捕食，或因体力耗尽而死。有的可能刚刚看见这个世界，就要进入下一个轮回。</p><p>完成交配后雄虫立即死亡，雌虫沿河向上游飞行产卵，以确保卵落在合适的水域。</p><p>夕阳西下，踏上终途的这一刻，残阳在翅间灼烧出生命的倒计时。这也意味着一切将回到原点，回到梦开始的地方。</p><p>产卵结束，生命的旅程也随之结束。</p><p>在黎明学会走路，正午遇见挚爱，黄昏功成名就，午夜化为尘埃。短短一生，南柯一梦。</p><p>我们不是浮游，却共享着同样的生命命题，如何用有限的生命，触摸无限的意义。</p><p>拉波德氏变色龙。</p><p>一生不到两百天，竟也如同蜉蝣一生，沧海一粟。</p><p>为了在有限的生命里，完成刻在基因里的程序，刚出生仅有半根火柴棍的它，还没来得及体验世界，便匆忙地踏上寻找配偶的旅程。</p><p>从小就没有父母的陪伴，但本能告诉它，见到苍蝇的第一眼，那就是它的食物。</p><p>独自生活的日子里，连夜晚睡觉也要保持警惕，一旦察觉到危险，便毫不犹豫地松开爪子从高空坠落，这样小心翼翼的日子，它需要熬过将近四个月。</p><p>当生命进入倒计时，它的身体也迎来最后的蜕变，皮肤变得色彩斑斓，随着情绪起伏变换，膨胀的腹部和后背鲜艳的颜色宣告它已经准备好交配。</p><p>此时，它急需一个显眼的位置展示自己，告诉世界它已准备好迎接生命的巅峰。</p><p>雄性的竞争格外激烈，需要双方拿出最强的姿态，它们不会退缩，因为不管谁输谁赢，这都将是它们此生的最后一战。</p><p>当胜利者出现，雌性与之完成交配。这之后，它们便不再相见。</p><p>雌性的旅程仅剩一站，寻找心目中最完美的产卵地。</p><p>体内的十余颗卵，占到它体重的三分之一，压得它喘不过气来。</p><p>如此显眼而又行动迟缓，极易成为被攻击的目标，在捕食者面前，它唯一的防御，就是不停晃动身体，使自己看起来像一片叶子。</p><p>终于，它找了一个安全的角落，短暂的一生只为这一刻的使命。随着卵被埋入土中，终于，它可以享受生命最后的宁静。</p><p>在生命的最后时刻，它的身体开始不由控制的变化，神经系统逐渐失控，皮肤表面爆发出混乱的霓虹色，犹如一场缤纷的烟花谢幕，好似在回顾它短暂的一生。</p><p>而它的同类，也都将在旱季来临前集体死亡。唯有地下埋藏的卵，承载种族延续的希望，静候新生。</p><p>生命的价值从不以长短衡量，即便如流星转瞬，也要在黑暗中迸发出耀眼的光芒。</p><p>死亡不是失去生命，而是走出时间。我想，生命之残酷，在于其短暂，生命之可贵，亦在于其短暂。</p><p>一蝶一世界，一虫一宇宙，朝生暮死，亦可惊鸿。</p>]]></content>
-    
-    
-    <summary type="html">&lt;hr&gt;</summary>
-    
-    
-    
-    <category term="心灵奇旅" scheme="https://vnsnclo.cn/categories/%E5%BF%83%E7%81%B5%E5%A5%87%E6%97%85/"/>
-    
-    
-    <category term="life" scheme="https://vnsnclo.cn/tags/life/"/>
     
   </entry>
   
@@ -435,6 +416,27 @@
     
     
     <category term="随笔" scheme="https://vnsnclo.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>青年人，请珍惜你们的迷惘</title>
+    <link href="https://vnsnclo.cn/2022/05/04/%E9%9D%92%E5%B9%B4%E4%BA%BA%EF%BC%8C%E8%AF%B7%E7%8F%8D%E6%83%9C%E4%BD%A0%E4%BB%AC%E7%9A%84%E8%BF%B7%E6%83%98/"/>
+    <id>https://vnsnclo.cn/2022/05/04/%E9%9D%92%E5%B9%B4%E4%BA%BA%EF%BC%8C%E8%AF%B7%E7%8F%8D%E6%83%9C%E4%BD%A0%E4%BB%AC%E7%9A%84%E8%BF%B7%E6%83%98/</id>
+    <published>2022-05-04T07:32:00.000Z</published>
+    <updated>2025-05-06T12:44:51.171Z</updated>
+    
+    <content type="html"><![CDATA[<hr><span id="more"></span><blockquote><p>编者按：</p><p>青年节快乐。</p><p>青年时代，我们多少都处在一种迷惘的状态中。在青年时代，未曾迷惘很可能并不是一个好现象，因为这实际上意味着缺乏反思，缺乏“在我的人生中，我到底想要什么”的深入思考。</p><p>青年人，请珍惜你们的迷惘。因为迷惘，“它带给人生以痛苦，但同时也为人生积聚着力量”。</p></blockquote><p>人一辈子，最难忘的其实只有两个阶段，一个是童年，一个是青春期。对于大多数人来说，其他的时光简直就像嚼过了的甘蔗渣，淡而无味，而且一年一年地越过越觉得过得快。<strong>所以历来就有人认为，青年时代以后的日子都不必过了</strong>。</p><p>马其顿的亚历山大大帝于33岁时死于征战途中，被黑格尔称为“一幅最美的景象”，因为 “要使他永远以一个青年出现于后世人眼前，他就不得不在年纪轻轻的时候早死”。</p><p>我国“五四”时期的“新青年”则有人提出，人过40都该杀。这都是当一个社会处于青年时代所流行的议论，生于这样一个时代的年轻人是最幸运的，因为只有他们最有作为。</p><p>但一个社会不可能永远处于青春期，而是要么走向成熟，要么迅速老化。所以，在人类历史上的大部分时间里，<strong>青年人的常态就是处于动摇和迷惘之中</strong>，他们常常羡慕前人年纪轻轻就干出了丰功伟绩，震撼了世界，而自己身处一个普遍平庸的时代，不要说没有建功立业的条件和机遇，就连一个站得住脚的理想都失去了。</p><p>不过，尽管今天有不少青年看起来比老年人更老于世故，但<strong>青年之所以是青年，正在于他们并不满足于自己和自己时代的现状，在内心中有一番挣扎和探索，想要参透人生的意义</strong>。</p><p>青春的迷惘，其实正是对人生意义的迷惘，对自己“从何处来、向何处去”的迷惘。以前看过一本苏联小说叫《你到底要什么》，讲的是苏联“解冻”后的 60年代青年寻欢作乐之余的怅然若失心态。</p><p>记得当时我还在农村当知青，几乎所有同龄人考虑的都是“我将会成为什么”，却极少有人考虑“我到底要什么”。<strong>是啊，我将会成为什么自然会成为什么，可是我到底要什么呢</strong>？这个问题不搞清，我将成为的那个“什么”很可能是我根本不想“要”的，到那时如果我再明白自己真正要什么，那就晚了。</p><p>当时眼前的确是一片漆黑。这不仅是指对我这种“出身不好”的青年来说，招工和“工农兵推荐”上大学绝无希望，只能打算一辈子务农；而且更重要的是，没有任何人能够给我指一条精神上的出路。现行的一切理论、宣传、口号和指示都成了明显的骗局，我渴望找到一位老师、兄长或父辈，能够在做人和思想方面给我立一个榜样，或提出一些有益的忠告。</p><p>但我最终是绝望了。<strong>我终于明白了，除了靠自己，谁也不能帮我</strong>。那时，未来在我心中完全是一个未知数，整个国家的命运同样如此。我在迷惘中奋起，在迷惘中读书学习，在迷惘中探求人生的意义和国家的前途。</p><p>经常会有一种空虚感和底气不足的怅惘向我袭来，其中交织着朦胧的战栗、神秘的预感、暗暗的焦虑和莫名其妙的恐慌。但它并没有将我击倒，而是迫使我带着深深的忧郁和伤感，游向知识的大海。</p><p>今天想来，我要感谢青春的迷惘，虽然当时感到自己像掉进了无底的深渊。我怀念自己的青春时代，主要就是怀念这种迷惘的心情。</p><p>的确，正是在40岁上（“不惑”之年或“该杀”之年），我开始不再迷惘了，而代之以一种紧迫感。经历了考研、读研、留校任教的一连串“时来运转”之后，<strong>那一年我突然发现，人生苦短，我这一生要做的事恐怕是永远也做不完了，所以要赶紧做，现在就做</strong>。</p><p>我放下了一切爱好，一切郊游的机会，除了讲课之外就是埋头于书斋，抓紧一切时间，拼命追赶着某颗遥远的命运之星，经常梦见自己误了火车。我终于知道自己“到底要什么”了：</p><p><strong>我要搞清一切真相，历史的真相，社会的真相，人类的真相，人性的真相，最终是自己的真相。人生中充满了欺骗、自欺和虚伪，我不愿意度过一个虚假的人生</strong>。</p><p>当然，完全搞清真相是不可能的，否则人就成上帝了。但我认定人的生命之不同于动物，就在于他有这一点灵明，或者说神性，他类似于上帝。最近十多年来，我的生活过得平静而无纷扰，与我青年时代的动荡不安形成鲜明的对比，所以，从自己的时间感觉上来说，这十几年过得简直就像只有三个月。</p><p><strong>但我感到自豪的是，我没有虚度光阴，我把我的一生都凝聚在我青年时代所选定的一点上了</strong>，为此我要再次感谢当年的青春的迷惘。</p><p>每个人的青春都是不同的，他的选择自然也与别人不同，这一点在今天这个多元化的时代更是如此。但很可能，世世代代的奋发有为的年轻人对自己的青春会有共同的或类似的感受，他们所体验到的青春的迷惘并不是特殊的风景，而是人性结构中的一个必要的层次：</p><p><strong>它带给人生以痛苦，但同时也为人生积聚着力量。</strong></p><p>青年时代的迷惘，“是人性结构中一个必要的层次”。</p><p>有迷惘，也有觉醒；有探索，也有前行。</p><p>青年节是为纪念百年之前那个时代里一场浩大的前行和抗争而设立的节日。</p><p>在这个节日，我们纪念一百年前的先贤。</p><p>他们为真理苦苦求索，他们为心中对真理的信念一往无前。</p><p><strong>“愿中国青年都摆脱冷气，只是向上走，不必听自暴自弃者流的话。能做事的做事，能发声的发声。有一分热，发一分光，就令萤火一般，也可以在黑暗里发一点光，不必等候炬火。</strong></p><p><strong>此后如竟没有炬火：我便是唯一的光。”</strong></p><blockquote><p>转自 邓晓芒：青年人，请珍惜你们的迷惘</p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="心灵奇旅" scheme="https://vnsnclo.cn/categories/%E5%BF%83%E7%81%B5%E5%A5%87%E6%97%85/"/>
+    
+    
+    <category term="邓晓芒" scheme="https://vnsnclo.cn/tags/%E9%82%93%E6%99%93%E8%8A%92/"/>
     
   </entry>
   
